@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+
+    <logger name="kafka.server.KafkaConfig" level="WARN"/>
+    <logger name="org.apache.kafka.clients" level="WARN"/>
+
+    <logger name="org.apache.zookeeper.server" level="WARN"/>
+    <logger name="org.apache.zookeeper.ZooKeeper" level="WARN"/>
+    <logger name="org.apache.zookeeper.ClientCnxn" level="WARN"/>
+
+</configuration>
