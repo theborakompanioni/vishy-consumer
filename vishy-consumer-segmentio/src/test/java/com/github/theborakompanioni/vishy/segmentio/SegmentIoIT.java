@@ -3,6 +3,7 @@ package com.github.theborakompanioni.vishy.segmentio;
 import com.github.theborakompanioni.openmrc.OpenMrc;
 import com.github.theborakompanioni.openmrc.OpenMrcTestConfiguration;
 import com.github.theborakompanioni.openmrc.mother.json.InitialRequestJsonMother;
+import com.google.common.base.Charsets;
 import com.google.common.net.HttpHeaders;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.nio.charset.Charset;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -45,7 +44,7 @@ public class SegmentIoIT {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
+            Charsets.UTF_8);
 
     @Autowired
     private WebApplicationContext wac;
@@ -64,12 +63,12 @@ public class SegmentIoIT {
     }
 
     @Test
-    public void itShouldHaveKeenProperties() throws Exception {
+    public void itShouldHaveProperties() throws Exception {
         assertThat("Segment write key not specified.", properties.getWriteKey(), not(isEmptyOrNullString()));
     }
 
     @Test
-    public void itShouldHaveAnSegmentOpenMrcClientAdapter() throws Exception {
+    public void itShouldHaveAnAdapter() throws Exception {
         assertThat(clientAdapter, is(notNullValue()));
     }
 

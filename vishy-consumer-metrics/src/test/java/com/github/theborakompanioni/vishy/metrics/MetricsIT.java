@@ -1,4 +1,4 @@
-package com.github.theborakompanioni.vishy.keenio;
+package com.github.theborakompanioni.vishy.metrics;
 
 import com.github.theborakompanioni.openmrc.OpenMrc;
 import com.github.theborakompanioni.openmrc.OpenMrcTestConfiguration;
@@ -19,8 +19,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.nio.charset.Charset;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
@@ -32,11 +35,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(
         webEnvironment = RANDOM_PORT,
         classes = {
-                KeenIoIT.TestApplictaion.class,
+                MetricsIT.TestApplictaion.class,
                 OpenMrcTestConfiguration.class,
-                KeenITConfiguration.class
+                MetricsITConfiguration.class
         })
-public class KeenIoIT {
+public class MetricsIT {
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charsets.UTF_8);
@@ -49,23 +52,13 @@ public class KeenIoIT {
     private WebApplicationContext wac;
 
     @Autowired
-    private KeenIoProperties properties;
-
-    @Autowired
-    private KeenOpenMrcClientAdapter clientAdapter;
+    private DropwizardMetricsClientAdapter clientAdapter;
 
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
-
-    @Test
-    public void itShouldHaveKeenProperties() throws Exception {
-        assertThat("Keen project id not specified.", properties.getProjectId(), not(isEmptyOrNullString()));
-        assertThat("Keen write key not specified.", properties.getWriteKey(), not(isEmptyOrNullString()));
-        assertThat("Keen read key not specified.", properties.getReadKey(), not(isEmptyOrNullString()));
     }
 
     @Test
