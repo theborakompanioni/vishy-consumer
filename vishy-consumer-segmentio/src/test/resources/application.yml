@@ -1,0 +1,16 @@
+spring.profiles.active: production
+
+app.name: vishy-consumer-test
+app.description: a openmrc consumer test
+
+management.context-path: /actuator
+
+# LOGGING
+logging.path: ./var/log
+logging.file: application.log
+logging.config: classpath:logback.xml
+logging.level.org.springframework: WARN
+
+vishy.segmentio:
+  enabled: true
+  write-key: vkeLyauEBLwCnSj9Tf60u2KAsJ1xk8ra

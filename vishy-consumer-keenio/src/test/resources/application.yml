@@ -1,7 +1,7 @@
 spring.profiles.active: production
 
-app.name: vishy-consumer-keenio-test
-app.description: a simple openmrc consumer for keen.io test
+app.name: vishy-consumer-test
+app.description: a openmrc consumer test
 
 management.context-path: /actuator
 
