@@ -13,6 +13,7 @@
         <module>vishy-consumer-influxdb</module>
         <module>vishy-consumer-kafka</module>
         <module>vishy-consumer-elasticsearch</module>
+        <module>vishy-consumer-all</module>
     </modules>
 
     <parent>
