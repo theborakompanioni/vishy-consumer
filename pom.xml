@@ -62,6 +62,20 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>openmrc-spring</artifactId>
+            <version>${openmrc.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>openmrc-spring</artifactId>
+            <version>${openmrc.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
@@ -190,12 +204,6 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <preparationGoals>clean verify javadoc:aggregate</preparationGoals>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
