@@ -14,6 +14,7 @@
         <module>vishy-consumer-kafka</module>
         <module>vishy-consumer-elasticsearch</module>
         <module>vishy-consumer-all</module>
+        <module>vishy-consumer-jdbc</module>
     </modules>
 
     <parent>
@@ -110,6 +111,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
