@@ -42,5 +42,10 @@
             <artifactId>vishy-consumer-segmentio</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>vishy-consumer-jdbc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
