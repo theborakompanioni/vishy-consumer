@@ -30,6 +30,7 @@ class JdbcITConfig extends JdbcConfig {
         return spy(new JdbcOpenMrcClientAdapter(properties, jdbcTemplate(), jsonMapper));
     }
 
+    /*
     @Bean
     public FlywayMigrationStrategy flywayMigrationStrategy() {
         return flyway -> {
@@ -37,5 +38,5 @@ class JdbcITConfig extends JdbcConfig {
                     flyway.getBaselineVersion().getVersion());
             flyway.migrate();
         };
-    }
+    }*/
 }

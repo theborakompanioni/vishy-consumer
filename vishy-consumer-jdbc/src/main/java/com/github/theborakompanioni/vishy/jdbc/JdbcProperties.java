@@ -18,6 +18,7 @@ public class JdbcProperties {
     private String password;
     private String driverClassName;
     private String tableName;
+    private boolean tableSetupEnabled = false;
 
     public boolean isEnabled() {
         return enabled;
@@ -74,5 +75,13 @@ public class JdbcProperties {
         }
 
         this.tableName = tableName;
+    }
+
+    public boolean isTableSetupEnabled() {
+        return tableSetupEnabled;
+    }
+
+    public void setTableSetupEnabled(boolean tableSetupEnabled) {
+        this.tableSetupEnabled = tableSetupEnabled;
     }
 }

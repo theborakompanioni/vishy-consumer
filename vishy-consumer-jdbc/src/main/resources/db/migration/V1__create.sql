@@ -1,4 +1,4 @@
-CREATE TABLE vishy_openmrc_request_test_table (
+CREATE TABLE ${vishy.table.name} (
   id   BIGSERIAL,
   type VARCHAR(32)    NOT NULL,
   json VARCHAR(10000) NOT NULL,

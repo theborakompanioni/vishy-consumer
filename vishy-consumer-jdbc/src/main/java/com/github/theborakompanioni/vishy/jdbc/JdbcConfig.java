@@ -3,6 +3,7 @@ package com.github.theborakompanioni.vishy.jdbc;
 import com.codahale.metrics.MetricRegistry;
 import com.github.theborakompanioni.openmrc.mapper.OpenMrcJsonMapper;
 import com.github.theborakompanioni.openmrc.mapper.StandardOpenMrcJsonMapper;
+import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.ExtensionRegistry;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,9 +51,9 @@ public class JdbcConfig {
         }
 
         // TODO: make configurable
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        config.addDataSourceProperty("cachePrepStmts", String.valueOf(true));
+        config.addDataSourceProperty("prepStmtCacheSize", String.valueOf(250));
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", String.valueOf(2048));
 
         return config;
     }
@@ -83,5 +85,32 @@ public class JdbcConfig {
         return new StandardOpenMrcJsonMapper(
                 extensionRegistry.orElseGet(ExtensionRegistry::getEmptyRegistry),
                 metricRegistry.orElseGet(MetricRegistry::new));
+    }
+
+    @Bean
+    public FlywayMigrationStrategy flywayMigrationStrategy() {
+        if (!properties.isTableSetupEnabled()) {
+            return idleFlywayMigrationStrategy();
+        }
+
+        return initializingFlywayMigrationStrategy();
+    }
+
+    private FlywayMigrationStrategy initializingFlywayMigrationStrategy() {
+        return flyway -> {
+            log.info("Starting flyway migration v{}", flyway.getBaselineVersion().getVersion());
+
+            flyway.setTable("vishy_schema_version");
+            flyway.setDataSource(hikariDataSource());
+            flyway.setPlaceholders(ImmutableMap.<String, String>builder()
+                    .put("vishy.table.name", properties.getTableName())
+                    .build());
+
+            flyway.migrate();
+        };
+    }
+
+    private FlywayMigrationStrategy idleFlywayMigrationStrategy() {
+        return flyway -> log.info("Skipping flyway migration - vishy.");
     }
 }
