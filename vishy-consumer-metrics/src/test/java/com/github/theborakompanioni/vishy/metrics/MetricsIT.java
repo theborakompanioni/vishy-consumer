@@ -19,8 +19,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.charset.Charset;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -52,7 +50,7 @@ public class MetricsIT {
     private WebApplicationContext wac;
 
     @Autowired
-    private DropwizardMetricsClientAdapter clientAdapter;
+    private VishyMetricsClientAdapter clientAdapter;
 
     private MockMvc mockMvc;
 

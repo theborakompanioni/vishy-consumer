@@ -3,7 +3,7 @@ package com.github.theborakompanioni.vishy.metrics;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("vishy.metrics")
-public class DropwizardMetricsProperties {
+public class VishyMetricsProperties {
     private static final long defaultIntervalInSeconds = 60L;
 
     private boolean enabled;
