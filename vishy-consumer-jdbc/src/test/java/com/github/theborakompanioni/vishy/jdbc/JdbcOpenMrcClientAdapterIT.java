@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {
         JdbcOpenMrcClientAdapterIT.TestApplictaion.class,
-        JdbcITConfig.class
+        VishyJdbcITConfig.class
 })
 public class JdbcOpenMrcClientAdapterIT {
 
@@ -33,7 +33,7 @@ public class JdbcOpenMrcClientAdapterIT {
     private OpenMrcJsonMapper jsonMapper;
 
     @Autowired
-    private JdbcProperties jdbcProperties;
+    private VishyJdbcProperties jdbcProperties;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

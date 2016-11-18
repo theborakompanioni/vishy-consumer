@@ -23,7 +23,7 @@ public class JdbcOpenMrcClientAdapterTest {
 
     @Before
     public void setUp() {
-        JdbcProperties properties = mock(JdbcProperties.class);
+        VishyJdbcProperties properties = mock(VishyJdbcProperties.class);
         doReturn("test_table").when(properties).getTableName();
 
         this.jdbcTemplate = spy(JdbcTemplate.class);

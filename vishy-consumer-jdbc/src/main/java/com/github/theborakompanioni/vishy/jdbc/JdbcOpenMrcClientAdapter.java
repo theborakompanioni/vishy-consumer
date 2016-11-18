@@ -16,7 +16,7 @@ public class JdbcOpenMrcClientAdapter implements OpenMrcRequestConsumer {
     private final OpenMrcJsonMapper jsonMapper;
     private final String insertSql;
 
-    public JdbcOpenMrcClientAdapter(JdbcProperties properties,
+    public JdbcOpenMrcClientAdapter(VishyJdbcProperties properties,
                                     JdbcTemplate jdbcTemplate,
                                     OpenMrcJsonMapper jsonMapper) {
         this.jdbcTemplate = requireNonNull(jdbcTemplate);
@@ -42,7 +42,7 @@ public class JdbcOpenMrcClientAdapter implements OpenMrcRequestConsumer {
         jdbcTemplate.update(insertSql, type, json);
     }
 
-    private String createInsertSql(JdbcProperties properties) {
+    private String createInsertSql(VishyJdbcProperties properties) {
         return "insert into " +
                 properties.getTableName() +
                 "(type, json) " +

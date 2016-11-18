@@ -9,7 +9,7 @@ import java.util.Optional;
 import static java.util.Objects.requireNonNull;
 
 @ConfigurationProperties("vishy.jdbc")
-public class JdbcProperties {
+public class VishyJdbcProperties {
     private final static String DEFAULT_TABLE_NAME = "vishy_openmrc_request";
 
     private boolean enabled;

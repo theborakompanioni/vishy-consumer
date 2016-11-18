@@ -25,12 +25,12 @@ import java.util.Optional;
 @Slf4j
 @Configuration
 @ConditionalOnProperty("vishy.jdbc.enabled")
-@EnableConfigurationProperties(JdbcProperties.class)
+@EnableConfigurationProperties(VishyJdbcProperties.class)
 @EnableTransactionManagement
-public class JdbcConfig {
+public class VishyJdbcConfig {
 
     @Autowired
-    private JdbcProperties properties;
+    private VishyJdbcProperties properties;
 
     @Autowired(required = false)
     private MetricRegistry metricRegistry;
