@@ -19,7 +19,7 @@ public class VishyMetricsAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(MetricRegistry.class)
-    public MetricRegistry metricRegistry() {
+    public MetricRegistry metricsRegistry() {
         return new MetricRegistry();
     }
 
@@ -34,14 +34,14 @@ public class VishyMetricsAutoConfiguration {
         }
 
         @Bean
-        public OpenMrcRequestConsumer metricsOpenMrcClientAdapter(MetricRegistry metricRegistry) {
-            return new VishyMetricsClientAdapter(metricRegistry);
+        public OpenMrcRequestConsumer metricsOpenMrcClientAdapter() {
+            return new VishyMetricsClientAdapter(metricsRegistry());
         }
 
         @Bean
         @ConditionalOnProperty("vishy.metrics.console")
         public ConsoleReporter consoleReporter() {
-            ConsoleReporter reporter = ConsoleReporter.forRegistry(metricRegistry())
+            ConsoleReporter reporter = ConsoleReporter.forRegistry(metricsRegistry())
                     .convertRatesTo(TimeUnit.SECONDS)
                     .convertDurationsTo(TimeUnit.MILLISECONDS)
                     .build();
