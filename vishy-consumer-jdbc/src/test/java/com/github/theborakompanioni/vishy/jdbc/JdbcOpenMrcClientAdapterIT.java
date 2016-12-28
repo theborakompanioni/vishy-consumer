@@ -42,7 +42,7 @@ public class JdbcOpenMrcClientAdapterIT {
     private JdbcOpenMrcClientAdapter sut;
 
     @Test
-    public void accept() throws Exception {
+    public void itShouldPersistToDatabase() throws Exception {
 
         final OpenMrc.Request initialRequest = new InitialRequestProtobufMother()
                 .standardInitialRequest()

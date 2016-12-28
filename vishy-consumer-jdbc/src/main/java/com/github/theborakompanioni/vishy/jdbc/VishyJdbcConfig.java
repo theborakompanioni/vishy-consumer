@@ -28,6 +28,16 @@ import java.util.Optional;
 @EnableConfigurationProperties(VishyJdbcProperties.class)
 @EnableTransactionManagement
 public class VishyJdbcConfig {
+    /**
+     * Reasons for static declaration: created very early in the application’s lifecycle
+     * allows the bean to be created without having to instantiate the @Configuration class
+     *
+     * https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-validation
+     */
+    @Bean
+    public static VishyJdbcPropertiesValidator configurationPropertiesValidator() {
+        return new VishyJdbcPropertiesValidator();
+    }
 
     @Autowired
     private VishyJdbcProperties properties;

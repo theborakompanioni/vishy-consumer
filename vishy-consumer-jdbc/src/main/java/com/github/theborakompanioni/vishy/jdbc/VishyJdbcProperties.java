@@ -68,12 +68,6 @@ public class VishyJdbcProperties {
     }
 
     public void setTableName(String tableName) {
-        requireNonNull(tableName);
-
-        if (!CharMatcher.javaLetterOrDigit().or(CharMatcher.anyOf("._")).matchesAllOf(tableName)) {
-            throw new IllegalArgumentException("Invalid table name provided: " + tableName);
-        }
-
         this.tableName = tableName;
     }
 
