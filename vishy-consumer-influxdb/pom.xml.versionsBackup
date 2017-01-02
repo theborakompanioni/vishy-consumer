@@ -5,26 +5,26 @@
     <parent>
         <artifactId>vishy-consumer-parent</artifactId>
         <groupId>com.github.theborakompanioni</groupId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vishy-consumer-keenio</artifactId>
-
+    <artifactId>vishy-consumer-influxdb</artifactId>
     <properties>
-        <keen.client.version>2.1.1</keen.client.version>
+        <metrics-influxdb.version>0.9.3</metrics-influxdb.version>
+        <influxdb-java.version>2.4</influxdb-java.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.theborakompanioni</groupId>
-            <artifactId>vishy-consumer-util</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.github.davidb</groupId>
+            <artifactId>metrics-influxdb</artifactId>
+            <version>${metrics-influxdb.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.keen</groupId>
-            <artifactId>keen-client-api-java</artifactId>
-            <version>${keen.client.version}</version>
+            <groupId>org.influxdb</groupId>
+            <artifactId>influxdb-java</artifactId>
+            <version>${influxdb-java.version}</version>
         </dependency>
     </dependencies>
 
