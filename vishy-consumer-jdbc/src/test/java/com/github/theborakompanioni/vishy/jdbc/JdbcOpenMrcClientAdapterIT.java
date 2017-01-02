@@ -54,7 +54,9 @@ public class JdbcOpenMrcClientAdapterIT {
         final Map<String, Object> stringObjectMap = jdbcTemplate.queryForObject(sql, new ColumnMapRowMapper());
         final String json = stringObjectMap.get("json").toString();
 
-        final OpenMrc.Request fromDb = jsonMapper.toOpenMrcRequest(json).build();
+        final OpenMrc.Request fromDb = jsonMapper.toOpenMrcRequest(json)
+                .blockingSingle()
+                .build();
 
         assertThat(fromDb, is(equalTo(initialRequest)));
     }
