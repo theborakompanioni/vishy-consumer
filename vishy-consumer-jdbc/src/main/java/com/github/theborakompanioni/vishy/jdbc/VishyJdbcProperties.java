@@ -1,12 +1,9 @@
 package com.github.theborakompanioni.vishy.jdbc;
 
-import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
 
 @ConfigurationProperties("vishy.jdbc")
 public class VishyJdbcProperties {

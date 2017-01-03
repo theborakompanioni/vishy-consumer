@@ -1,8 +1,8 @@
 package com.github.theborakompanioni.vishy.keenio;
 
 import com.github.theborakompanioni.openmrc.OpenMrc;
-import com.github.theborakompanioni.openmrc.OpenMrcTestConfiguration;
 import com.github.theborakompanioni.openmrc.mother.json.InitialRequestJsonMother;
+import com.github.theborakompanioni.openmrc.spring.web.SimpleOpenMrcTestConfiguration;
 import com.google.common.base.Charsets;
 import com.google.common.net.HttpHeaders;
 import org.junit.Before;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         webEnvironment = RANDOM_PORT,
         classes = {
                 KeenIoIT.TestApplictaion.class,
-                OpenMrcTestConfiguration.class,
+                SimpleOpenMrcTestConfiguration.class,
                 KeenITConfiguration.class
         })
 public class KeenIoIT {
@@ -87,7 +87,7 @@ public class KeenIoIT {
     }
 
     private ResultActions send(String json) throws Exception {
-        return mockMvc.perform(post("/openmrc/consume")
+        return mockMvc.perform(post("/test/openmrc/consume")
                 .header(HttpHeaders.USER_AGENT, "Firefox")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(contentType)
