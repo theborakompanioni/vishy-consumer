@@ -14,18 +14,22 @@ import static java.util.Objects.requireNonNull;
 public class VishyMetricsClientAdapter implements OpenMrcRequestConsumer {
     private static final String METRIC_PREFIX = "vishy";
 
-    private final VisibilityStateMetrics initial;
-    private final VisibilityTimeReportMetrics status;
+    private final VisibilityStateMetrics initialState;
+    private final VisibilityTimeReportMetrics statusTime;
+    private final VisibilityStateMetrics statusState;
     private final VisibilityTimeReportMetrics summary;
 
     private final Meter incomingRequests;
 
     public VishyMetricsClientAdapter(MetricRegistry metricsRegistry) {
-        this.initial = new VisibilityStateMetrics(METRIC_PREFIX + ".initial", metricsRegistry);
-        this.status = new VisibilityTimeReportMetrics(METRIC_PREFIX + ".status", metricsRegistry);
-        this.summary = new VisibilityTimeReportMetrics(METRIC_PREFIX, metricsRegistry);
+        this.initialState = new VisibilityStateMetrics(METRIC_PREFIX + ".initial", metricsRegistry);
 
-        this.incomingRequests = metricsRegistry.meter(MetricRegistry.name(METRIC_PREFIX, "requests.incoming"));
+        this.statusTime = new VisibilityTimeReportMetrics(METRIC_PREFIX + ".status", metricsRegistry);
+        this.statusState = new VisibilityStateMetrics(METRIC_PREFIX + ".status", metricsRegistry);
+
+        this.summary = new VisibilityTimeReportMetrics(METRIC_PREFIX + ".summary", metricsRegistry);
+
+        this.incomingRequests = metricsRegistry.meter(MetricRegistry.name(METRIC_PREFIX, "request.incoming"));
     }
 
     @Override
@@ -53,14 +57,19 @@ public class VishyMetricsClientAdapter implements OpenMrcRequestConsumer {
         Optional.ofNullable(context)
                 .filter(OpenMrc.InitialContext::hasState)
                 .map(OpenMrc.InitialContext::getState)
-                .ifPresent(this.initial);
+                .ifPresent(this.initialState);
     }
 
     private void onStatus(OpenMrc.StatusContext context) {
         context.getTestList().stream()
                 .filter(OpenMrc.PercentageTimeTest::hasTimeReport)
                 .map(OpenMrc.PercentageTimeTest::getTimeReport)
-                .forEach(this.status);
+                .forEach(this.statusTime);
+
+        context.getTestList().stream()
+                .filter(OpenMrc.PercentageTimeTest::hasMonitorState)
+                .map(OpenMrc.PercentageTimeTest::getMonitorState)
+                .forEach(this.statusState);
     }
 
     private void onSummary(OpenMrc.SummaryContext context) {
