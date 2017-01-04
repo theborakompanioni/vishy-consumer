@@ -1,6 +1,6 @@
 package com.github.theborakompanioni.vishy.jdbc;
 
-import com.github.theborakompanioni.openmrc.mapper.OpenMrcJsonMapper;
+import com.github.theborakompanioni.openmrc.json.OpenMrcJsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

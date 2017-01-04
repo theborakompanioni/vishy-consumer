@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.jdbc;
 
 import com.github.theborakompanioni.openmrc.OpenMrc;
 import com.github.theborakompanioni.openmrc.OpenMrcRequestConsumer;
-import com.github.theborakompanioni.openmrc.mapper.OpenMrcJsonMapper;
+import com.github.theborakompanioni.openmrc.json.OpenMrcJsonMapper;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;

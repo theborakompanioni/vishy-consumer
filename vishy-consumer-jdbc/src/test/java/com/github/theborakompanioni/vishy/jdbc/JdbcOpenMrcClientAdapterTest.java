@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.jdbc;
 
 import com.github.theborakompanioni.openmrc.OpenMrc;
 import com.github.theborakompanioni.openmrc.mother.protobuf.InitialRequestProtobufMother;
-import com.github.theborakompanioni.openmrc.mapper.OpenMrcJsonMapper;
+import com.github.theborakompanioni.openmrc.json.OpenMrcJsonMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

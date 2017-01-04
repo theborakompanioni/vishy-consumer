@@ -1,8 +1,8 @@
 package com.github.theborakompanioni.vishy.jdbc;
 
 import com.codahale.metrics.MetricRegistry;
-import com.github.theborakompanioni.openmrc.mapper.OpenMrcJsonMapper;
-import com.github.theborakompanioni.openmrc.mapper.StandardOpenMrcJsonMapper;
+import com.github.theborakompanioni.openmrc.json.OpenMrcJsonMapper;
+import com.github.theborakompanioni.openmrc.json.StandardOpenMrcJsonMapper;
 import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.ExtensionRegistry;
 import com.zaxxer.hikari.HikariConfig;
@@ -31,7 +31,7 @@ public class VishyJdbcConfig {
     /**
      * Reasons for static declaration: created very early in the application’s lifecycle
      * allows the bean to be created without having to instantiate the @Configuration class
-     *
+     * <p>
      * https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-validation
      */
     @Bean
