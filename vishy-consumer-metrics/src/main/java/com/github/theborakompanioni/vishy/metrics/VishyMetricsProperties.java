@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.metrics;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.metrics")
+@ConfigurationProperties("vishy.consumer.metrics")
 public class VishyMetricsProperties {
     private static final long defaultIntervalInSeconds = 60L;
 

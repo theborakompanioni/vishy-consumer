@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Configuration
 @ConditionalOnBean(MetricRegistry.class)
-@ConditionalOnProperty("vishy.influxdb.enabled")
+@ConditionalOnProperty("vishy.consumer.influxdb.enabled")
 @EnableConfigurationProperties(InfluxdbProperties.class)
 public class InfluxdbMetricsConfig {
 

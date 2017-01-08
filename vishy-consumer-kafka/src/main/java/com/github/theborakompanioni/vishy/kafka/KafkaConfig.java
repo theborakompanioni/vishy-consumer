@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(KafkaProperties.class)
-@ConditionalOnProperty("vishy.kafka.enabled")
+@ConditionalOnProperty("vishy.consumer.kafka.enabled")
 public class KafkaConfig {
 
     @Autowired

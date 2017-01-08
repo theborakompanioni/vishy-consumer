@@ -18,7 +18,7 @@ import static java.util.Objects.requireNonNull;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(SegmentIoProperties.class)
-@ConditionalOnProperty("vishy.segmentio.enabled")
+@ConditionalOnProperty("vishy.consumer.segmentio.enabled")
 public class SegmentIoConfig {
 
     @Autowired

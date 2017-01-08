@@ -11,6 +11,6 @@ logging.file: application.log
 logging.config: classpath:logback.xml
 logging.level.org.springframework: WARN
 
-vishy.segmentio:
+vishy.consumer.segmentio:
   enabled: true
   write-key: vkeLyauEBLwCnSj9Tf60u2KAsJ1xk8ra

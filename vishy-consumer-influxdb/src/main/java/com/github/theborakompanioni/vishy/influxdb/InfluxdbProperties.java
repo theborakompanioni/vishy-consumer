@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.influxdb;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.influxdb")
+@ConfigurationProperties("vishy.consumer.influxdb")
 public class InfluxdbProperties {
 
     private boolean enabled;

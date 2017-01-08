@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.segmentio;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.segmentio")
+@ConfigurationProperties("vishy.consumer.segmentio")
 public class SegmentIoProperties {
 
     private boolean enabled;

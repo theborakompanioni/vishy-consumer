@@ -9,7 +9,7 @@ logging.file: application.log
 logging.config: classpath:logback.xml
 logging.level.org.springframework: INFO
 
-vishy.elasticsearch:
+vishy.consumer.elasticsearch:
   enabled: true
 
 # ELASTICSEARCH

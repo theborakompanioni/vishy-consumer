@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty("vishy.jdbc.enabled")
+@ConditionalOnProperty("vishy.consumer.jdbc.enabled")
 @EnableConfigurationProperties(VishyJdbcProperties.class)
 @EnableTransactionManagement
 public class VishyJdbcConfig {
@@ -110,10 +110,10 @@ public class VishyJdbcConfig {
         return flyway -> {
             log.info("Starting flyway migration v{}", flyway.getBaselineVersion().getVersion());
 
-            flyway.setTable("vishy_schema_version");
+            flyway.setTable("vishy_consumer_jdbc_schema_version");
             flyway.setDataSource(hikariDataSource());
             flyway.setPlaceholders(ImmutableMap.<String, String>builder()
-                    .put("vishy.table.name", properties.getTableName())
+                    .put("table.name", properties.getTableName())
                     .build());
 
             flyway.migrate();

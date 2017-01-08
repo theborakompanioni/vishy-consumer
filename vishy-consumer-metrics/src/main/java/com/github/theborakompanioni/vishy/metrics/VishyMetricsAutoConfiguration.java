@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty(value = "vishy.metrics.enabled", matchIfMissing = true)
+@ConditionalOnProperty(value = "vishy.consumer.metrics.enabled", matchIfMissing = true)
 public class VishyMetricsAutoConfiguration {
 
     @Bean
@@ -39,7 +39,7 @@ public class VishyMetricsAutoConfiguration {
         }
 
         @Bean
-        @ConditionalOnProperty("vishy.metrics.console")
+        @ConditionalOnProperty("vishy.consumer.metrics.console")
         public ConsoleReporter consoleReporter() {
             ConsoleReporter reporter = ConsoleReporter.forRegistry(metricsRegistry())
                     .convertRatesTo(TimeUnit.SECONDS)

@@ -15,7 +15,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(VishyElasticsearchProperties.class)
-@ConditionalOnProperty("vishy.elasticsearch.enabled")
+@ConditionalOnProperty("vishy.consumer.elasticsearch.enabled")
 @EnableElasticsearchRepositories(basePackageClasses = _package.class)
 public class VishyElasticsearchConfig {
 

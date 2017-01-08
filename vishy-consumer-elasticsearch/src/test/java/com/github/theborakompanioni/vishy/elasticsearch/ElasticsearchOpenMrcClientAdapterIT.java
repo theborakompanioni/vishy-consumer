@@ -22,7 +22,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         webEnvironment = RANDOM_PORT,
         classes = {TestApplictaion.class, VishyElasticsearchConfig.class},
         properties = {
-                "vishy.elasticsearch.enabled:true"
+                "vishy.consumer.elasticsearch.enabled:true"
         })
 public class ElasticsearchOpenMrcClientAdapterIT {
 

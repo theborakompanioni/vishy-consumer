@@ -23,7 +23,7 @@ import static java.util.Objects.requireNonNull;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(KeenIoProperties.class)
-@ConditionalOnProperty("vishy.keenio.enabled")
+@ConditionalOnProperty("vishy.consumer.keenio.enabled")
 public class KeenIoConfig {
 
     @Autowired

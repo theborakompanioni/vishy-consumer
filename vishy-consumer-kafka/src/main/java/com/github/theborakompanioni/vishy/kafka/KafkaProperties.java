@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.kafka;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.kafka")
+@ConfigurationProperties("vishy.consumer.kafka")
 public class KafkaProperties {
     private static final int defaultRetries = 0;
     private static final int defaultBatchSize = 16384;

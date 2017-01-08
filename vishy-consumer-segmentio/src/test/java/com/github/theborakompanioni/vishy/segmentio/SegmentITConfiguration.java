@@ -11,7 +11,7 @@ import static org.mockito.Mockito.spy;
 
 @Configuration
 @EnableConfigurationProperties(SegmentIoProperties.class)
-@ConditionalOnProperty("vishy.segmentio.enabled")
+@ConditionalOnProperty("vishy.consumer.segmentio.enabled")
 class SegmentITConfiguration extends SegmentIoConfig {
 
     @Override

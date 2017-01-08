@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.keenio;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.keenio")
+@ConfigurationProperties("vishy.consumer.keenio")
 public class KeenIoProperties {
 
     private boolean enabled;

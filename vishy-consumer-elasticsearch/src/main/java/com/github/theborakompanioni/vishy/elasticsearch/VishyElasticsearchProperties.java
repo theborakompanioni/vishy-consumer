@@ -2,7 +2,7 @@ package com.github.theborakompanioni.vishy.elasticsearch;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("vishy.elasticsearch")
+@ConfigurationProperties("vishy.consumer.elasticsearch")
 public class VishyElasticsearchProperties {
 
     private boolean enabled;

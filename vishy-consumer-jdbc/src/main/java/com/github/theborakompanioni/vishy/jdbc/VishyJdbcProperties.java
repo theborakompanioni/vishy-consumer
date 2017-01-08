@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Optional;
 
-@ConfigurationProperties("vishy.jdbc")
+@ConfigurationProperties("vishy.consumer.jdbc")
 public class VishyJdbcProperties {
     private final static String DEFAULT_TABLE_NAME = "vishy_openmrc_request";
 
