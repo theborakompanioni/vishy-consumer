@@ -13,7 +13,7 @@ import static org.mockito.Mockito.spy;
 
 @Slf4j
 @Configuration
-@Import(VishyJdbcConfig.class)
+@Import(VishyJdbcConsumerConfig.class)
 class VishyJdbcITConfig {
 
     private final VishyJdbcProperties properties;

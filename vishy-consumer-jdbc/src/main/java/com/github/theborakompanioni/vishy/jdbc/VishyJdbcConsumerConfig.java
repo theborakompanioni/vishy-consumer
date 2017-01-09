@@ -27,7 +27,7 @@ import java.util.Optional;
 @ConditionalOnProperty("vishy.consumer.jdbc.enabled")
 @EnableConfigurationProperties(VishyJdbcProperties.class)
 @EnableTransactionManagement
-public class VishyJdbcConfig {
+public class VishyJdbcConsumerConfig {
     /**
      * Reasons for static declaration: created very early in the application’s lifecycle
      * allows the bean to be created without having to instantiate the @Configuration class
@@ -55,6 +55,7 @@ public class VishyJdbcConfig {
         config.setJdbcUrl(properties.getJdbcUrl());
         config.setUsername(properties.getUsername());
         config.setPassword(properties.getPassword());
+        config.setPoolName("vishy-consumer-jdbc");
 
         if (metricRegistry != null) {
             config.setMetricRegistry(metricRegistry);
