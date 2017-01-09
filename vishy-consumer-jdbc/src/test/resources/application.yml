@@ -15,6 +15,6 @@ vishy.consumer.jdbc:
   enabled: true
   jdbcUrl: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
   driverClassName: org.h2.Driver
-  tableName: vishy_openmrc_request_test_table
   tableSetupEnabled: true
+  flywayScriptsLocation: db/migration
 

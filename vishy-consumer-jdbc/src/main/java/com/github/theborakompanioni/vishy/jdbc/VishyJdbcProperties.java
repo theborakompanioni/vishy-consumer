@@ -7,14 +7,13 @@ import java.util.Optional;
 
 @ConfigurationProperties("vishy.consumer.jdbc")
 public class VishyJdbcProperties {
-    private final static String DEFAULT_TABLE_NAME = "vishy_openmrc_request";
 
     private boolean enabled;
     private String jdbcUrl;
     private String username;
     private String password;
     private String driverClassName;
-    private String tableName;
+    private String flywayScriptsLocation;
     private boolean tableSetupEnabled = false;
 
     public boolean isEnabled() {
@@ -58,21 +57,19 @@ public class VishyJdbcProperties {
         this.driverClassName = driverClassName;
     }
 
-    public String getTableName() {
-        return Optional.ofNullable(tableName)
-                .map(Strings::emptyToNull)
-                .orElse(DEFAULT_TABLE_NAME);
-    }
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
     public boolean isTableSetupEnabled() {
         return tableSetupEnabled;
     }
 
     public void setTableSetupEnabled(boolean tableSetupEnabled) {
         this.tableSetupEnabled = tableSetupEnabled;
+    }
+
+    public String getFlywayScriptsLocation() {
+        return flywayScriptsLocation;
+    }
+
+    public void setFlywayScriptsLocation(String flywayScriptsLocation) {
+        this.flywayScriptsLocation = flywayScriptsLocation;
     }
 }

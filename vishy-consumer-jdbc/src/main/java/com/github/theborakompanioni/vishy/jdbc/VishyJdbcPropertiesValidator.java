@@ -1,9 +1,14 @@
 package com.github.theborakompanioni.vishy.jdbc;
 
-import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -20,16 +25,28 @@ public class VishyJdbcPropertiesValidator implements Validator {
 
         VishyJdbcProperties properties = (VishyJdbcProperties) target;
 
-        // if tableName is `null`, a default table name is applied
-        if (properties.getTableName() != null && !isValidTableName(properties.getTableName())) {
-            errors.rejectValue("tableName", "tableName.invalid", "Invalid table name.");
-        }
         if (properties.getJdbcUrl() == null || Strings.isNullOrEmpty(properties.getJdbcUrl())) {
             errors.rejectValue("jdbcUrl", "jdbcUrl.empty", "Empty jdbc url.");
         }
-    }
 
-    private boolean isValidTableName(String tableName) {
-        return CharMatcher.javaLetterOrDigit().or(CharMatcher.anyOf("._")).matchesAllOf(tableName);
+        final boolean locationGiven = !Strings.isNullOrEmpty(properties.getFlywayScriptsLocation());
+        if (locationGiven && properties.isTableSetupEnabled()) {
+            final String flywayScriptsLocation = properties.getFlywayScriptsLocation();
+            final Optional<URL> resource = Optional.ofNullable(this.getClass().getResource(flywayScriptsLocation));
+            if ((resource.isPresent())) {
+
+                try {
+                    final File file = Paths.get(resource.get().toURI()).toFile();
+                    if (!file.exists()) {
+                        errors.rejectValue("flywayScriptsLocation", "flywayScriptsLocation.invalid", "Location does not exist.");
+                    }
+                    if (!file.canRead()) {
+                        errors.rejectValue("flywayScriptsLocation", "flywayScriptsLocation.readonly", "Location is not readable.");
+                    }
+                } catch (URISyntaxException e) {
+                    errors.rejectValue("flywayScriptsLocation", "flywayScriptsLocation.invalid", "Location is malformed.");
+                }
+            }
+        }
     }
 }

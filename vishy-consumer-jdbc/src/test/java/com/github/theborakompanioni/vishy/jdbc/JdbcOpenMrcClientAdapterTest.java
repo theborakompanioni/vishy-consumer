@@ -2,7 +2,6 @@ package com.github.theborakompanioni.vishy.jdbc;
 
 import com.github.theborakompanioni.openmrc.OpenMrc;
 import com.github.theborakompanioni.openmrc.mother.protobuf.InitialRequestProtobufMother;
-import com.github.theborakompanioni.openmrc.json.OpenMrcJsonMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +9,9 @@ import org.mockito.Matchers;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,24 +20,14 @@ public class JdbcOpenMrcClientAdapterTest {
     private JdbcOpenMrcClientAdapter sut;
 
     private JdbcTemplate jdbcTemplate;
-    private OpenMrcJsonMapper jsonMapper;
+    private OpenMrcJdbcSaveAction saveAction;
 
     @Before
     public void setUp() {
-        VishyJdbcProperties properties = mock(VishyJdbcProperties.class);
-        doReturn("test_table").when(properties).getTableName();
-
         this.jdbcTemplate = spy(JdbcTemplate.class);
-        doReturn(1).when(jdbcTemplate).update(anyString(), Matchers.<String>anyVararg());
+        this.saveAction = spy(OpenMrcJdbcSaveAction.class);
 
-        this.jsonMapper = spy(OpenMrcJsonMapper.class);
-        doReturn("{ \"type\": \"TEST\"}").when(jsonMapper).toJson(Matchers.<OpenMrc.Request>any());
-
-        this.sut = spy(new JdbcOpenMrcClientAdapter(
-                properties,
-                jdbcTemplate,
-                jsonMapper
-        ));
+        this.sut = spy(new JdbcOpenMrcClientAdapter(jdbcTemplate, saveAction));
     }
 
     @Test
@@ -47,9 +38,7 @@ public class JdbcOpenMrcClientAdapterTest {
 
         sut.accept(initialRequest);
 
-        verify(sut, times(1)).persist(anyString(), anyString());
-        verify(jsonMapper, times(1)).toJson(Matchers.<OpenMrc.Request>any());
-        verify(jdbcTemplate, times(1)).update(anyString(), Matchers.<String>anyVararg());
+        verify(saveAction, times(1)).apply(argThat(is(jdbcTemplate)), argThat(is(initialRequest)));
     }
 
 }
