@@ -22,6 +22,7 @@ public class VishyMetricsClientAdapter implements OpenMrcRequestConsumer {
     private final Meter incomingRequests;
 
     public VishyMetricsClientAdapter(MetricRegistry metricsRegistry) {
+        requireNonNull(metricsRegistry);
         this.initialState = new VisibilityStateMetrics(METRIC_PREFIX + ".initial", metricsRegistry);
 
         this.statusTime = new VisibilityTimeReportMetrics(METRIC_PREFIX + ".status", metricsRegistry);

@@ -2,6 +2,7 @@ package com.github.theborakompanioni.vishy.metrics;
 
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.SharedMetricRegistries;
 import com.github.theborakompanioni.openmrc.OpenMrcRequestConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -16,11 +17,10 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @ConditionalOnProperty(value = "vishy.consumer.metrics.enabled", matchIfMissing = true)
 public class VishyMetricsAutoConfiguration {
-
     @Bean
-    @ConditionalOnMissingBean(MetricRegistry.class)
+    @ConditionalOnMissingBean
     public MetricRegistry metricsRegistry() {
-        return new MetricRegistry();
+        return SharedMetricRegistries.getOrCreate("openmrc");
     }
 
     @Configuration
